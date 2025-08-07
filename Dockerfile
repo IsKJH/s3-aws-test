@@ -1,3 +1,4 @@
+# 빌드 단계
 FROM node:24-alpine AS builder
 
 WORKDIR /app
@@ -6,8 +7,9 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-RUN npm run build
+RUN npm run build  # or rspack build, depending on your setup
 
+# 실행 단계
 FROM nginx:alpine
 
 COPY docker/nginx.conf /etc/nginx/nginx.conf
